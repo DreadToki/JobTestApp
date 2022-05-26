@@ -12,10 +12,13 @@ logic for incident creation method"
 I created a model for this task called UserCreation.cs
 
 U wanted me to create a "logic for incident creation method"))))
+
 public string IncidentName { get; set; } = Guid.NewGuid().ToString();
-Well, I assigned a GUID generator to IncidentName. Why? Is it safe? Can those pseudo "random" numbers and letters repeat?
+
+  Well, I assigned a GUID generator to IncidentName. Why? Is it safe? Can those pseudo "random" numbers and letters repeat?
 I were asking myself those questions during development.
-1) There are 2^128 possible combinations for GUID. And a format is 8-4-4-4-12 chunks. Pretty cool isn't it?
+  
+  There are 2^128 possible combinations for GUID. And a format is 8-4-4-4-12 chunks. Pretty cool isn't it?
 Yes, those numbers can repeat BUT percentage of it is very low(It's for a test job, it does its work) :)
 
 -----------------------------------------
