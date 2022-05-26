@@ -22,8 +22,9 @@ namespace JobTestApp.Controllers
             return Ok(await _context.UserCreations.ToListAsync());
         }
 
-        [HttpPost]
-        public async Task<ActionResult<List<UserCreation>>> PostUserCreation(UserCreation user)
+        [Route("/ValidatingUsersOnServer")]
+        [HttpPut]
+        public async Task<ActionResult<List<UserCreation>>> PutUserCreation(UserCreation user)
         {
             
             var dbUserNameChecker = await _context.UserCreations.Where(m => m.UserName == user.UserName).SingleOrDefaultAsync();
@@ -47,6 +48,34 @@ namespace JobTestApp.Controllers
                 await _context.SaveChangesAsync();
                 return Ok(await _context.UserCreations.ToListAsync());
             }
+        }
+        [Route("/PreUserCreationOnServer")]
+        [HttpPost]
+        public async Task<ActionResult<List<UserCreation>>> PostPreUserCreation(UserCreation userRequest)
+        {
+            var dbNameChecker = await _context.UserCreations.Where(m => m.UserName == userRequest.UserName).SingleOrDefaultAsync();
+            var dbEmailChecker = await _context.UserCreations.Where(m => m.Email == userRequest.Email).SingleOrDefaultAsync();
+            if (dbNameChecker == null)
+            {
+                if (dbEmailChecker == null)
+                {
+                    // check whether username is in the sys ...
+                    if (String.IsNullOrEmpty(userRequest.UserName))
+                    {
+                        return NotFound("Cannot create incident name without acc");
+                    } else if (String.IsNullOrEmpty(userRequest.FirstName) || String.IsNullOrEmpty(userRequest.LastName) || String.IsNullOrEmpty(userRequest.Email))
+                    {
+                        return NotFound("Cannot create account without contact");
+                    }
+                    else
+                    {
+                        _context.UserCreations.Add(userRequest);
+                        await _context.SaveChangesAsync();
+                        return Ok(await _context.UserCreations.ToListAsync());
+                    }
+                }
+            }
+            return NotFound("This username is in the system, change it");
         }
     }
 }
