@@ -16,6 +16,7 @@ namespace JobTestApp.Controllers
             _context = context;
         }
 
+        [Route("/GettingUsersFromServer")]
         [HttpGet]
         public async Task<ActionResult<List<UserCreation>>> Get() // Getting all the users from DB
         {
@@ -55,11 +56,10 @@ namespace JobTestApp.Controllers
         {
             var dbNameChecker = await _context.UserCreations.Where(m => m.UserName == userRequest.UserName).SingleOrDefaultAsync();
             var dbEmailChecker = await _context.UserCreations.Where(m => m.Email == userRequest.Email).SingleOrDefaultAsync();
-            if (dbNameChecker == null)
+            if (dbNameChecker == null) // check whether username is in the sys ...
             {
-                if (dbEmailChecker == null)
+                if (dbEmailChecker == null) // check email the same way, heeeere we go
                 {
-                    // check whether username is in the sys ...
                     if (String.IsNullOrEmpty(userRequest.UserName))
                     {
                         return NotFound("Cannot create incident name without acc");
