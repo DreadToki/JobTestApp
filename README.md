@@ -1,5 +1,5 @@
 # JobTestApp
-Yo, hi to those gentelmen and ladies who will review this code.
+Yo, I am going to say "Good day" to those gentelmen and ladies who will review this code.
 First of all, thank you for this test, secondly, fck it, I've benn thinking 'bout this task for a long time, but, eventually, I think I did it :)
 
 -----------------------------------------
