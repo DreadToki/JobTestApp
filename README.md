@@ -44,5 +44,5 @@ And for this "creature of validation" I created PUT method in the same UserCreat
   With love from little programmer who wants to work. I wanna sleep, bye.
 
 -----------------------------------------
-Stil have questions 'bout this code? @DreadToki <- telegram, I'll answer u
+Still have questions 'bout this code? @DreadToki <- telegram, I'll answer u
 ❤️❤️❤️❤️
